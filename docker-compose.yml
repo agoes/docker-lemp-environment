@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  code:
+    image: tianon/true
+    volumes:
+      - ./code:/var/www/
+  workspace:
+    build: images/workspace
+    tty: true
+    volumes_from:
+      - code
+  php-fpm:
+    build: images/php-fpm
+    volumes_from:
+      - code
+  web:
+    build: images/web
+    ports:
+      - 80:80
+    links:
+      - php-fpm
+    volumes_from:
+      - code
+    volumes:
+      - ./images/web/conf.d/:/etc/nginx/conf.d/
+      - ./images/web/sites-available/:/etc/nginx/sites-available/
+    depends_on:
+      - php-fpm

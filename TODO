@@ -1,0 +1,22 @@
+Enable multisite
+- Create vhost in web container [done]
+- Add new volume mapping in docker-compose [done]
+
+Add command line for generate multisite
+- Generate vhost file [done]
+- Add new volume mapping in docker-compose [canceled]
+- Unregister vhost [done]
+
+Add git and npm
+
+MySQL
+- Add mysql service
+- Connect existing web to mysql
+
+Redis
+- Add redis service
+- Connect existing web to redis
+
+XDebug
+- Enable XDebug in http
+- Enable XDebug in CLI
