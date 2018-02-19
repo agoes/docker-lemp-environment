@@ -16,7 +16,7 @@ if [ "${#SITES[@]}" -ne 0 ]; then
     done
 
     echo "Restarting web container"
-    $DOCKER_COMPOSE restart web && $DOCKER_COMPOSE ps
+    $DOCKER_COMPOSE restart web && echo && $DOCKER_COMPOSE ps
 else
     echo "Cannot add/update vhost. SITES is empty or not set. Add sites in sites.sh, see the example in etc/sites.sh.example"
 fi
