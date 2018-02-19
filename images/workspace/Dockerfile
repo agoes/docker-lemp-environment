@@ -2,7 +2,7 @@ FROM php:alpine
 LABEL maintainer="agoes <agoes.aswari@gmail.com>"
 
 # install extensions
-RUN apk add --update --no-cache autoconf g++ make imap-dev openssl-dev libpng-dev && \
+RUN apk add --update --no-cache git nodejs-npm autoconf g++ make imap-dev openssl-dev libpng-dev && \
     docker-php-ext-install imap && \
     docker-php-ext-install gd && \
     docker-php-ext-install mysqli && \
@@ -14,7 +14,8 @@ RUN apk add --update --no-cache autoconf g++ make imap-dev openssl-dev libpng-de
     docker-php-ext-enable redis
 
 # cleanup installation files
-RUN rm -rf /var/cache/apk/* && \
+RUN apk del autoconf g++ make && \
+    rm -rf /var/cache/apk/* && \
     rm -rf /tmp/* && \
     docker-php-source delete
 
@@ -26,6 +27,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     mv composer.phar /usr/local/bin/composer
 
 # install phpunit
+ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer global require phpunit/phpunit -vvv
 ENV PATH="/root/.composer/vendor/bin:${PATH}"
 

@@ -8,15 +8,23 @@ Add command line for generate multisite
 - Unregister vhost [done]
 
 Add git and npm
+- git [done]
+- npm [done]
 
 MySQL
-- Add mysql service
-- Connect existing web to mysql
+- Add mysql service [done]
+- Connect existing web to mysql  [done]
 
 Redis
-- Add redis service
+- Add redis service [done]
 - Connect existing web to redis
 
 XDebug
 - Enable XDebug in http
 - Enable XDebug in CLI
+
+./lempctl --help
+
+Custom vhost file
+
+Update README.md

@@ -16,8 +16,9 @@ RUN apk add --update --no-cache autoconf g++ make imap-dev openssl-dev libpng-de
 # cleanup installation files
 RUN rm -rf /var/cache/apk/* && \
     rm -rf /tmp/* && \
-    docker-php-source delete
+    docker-php-source delete && \
+    apk del autoconf g++ make 
 
-ADD ./common.ini /usr/local/etc/php/conf.d
+COPY ./common.ini /usr/local/etc/php/conf.d
 
 WORKDIR /var/www

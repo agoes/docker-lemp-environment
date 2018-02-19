@@ -5,25 +5,44 @@ services:
     image: tianon/true
     volumes:
       - ./code:/var/www/
+
+  mariadb:
+    build: images/mariadb
+    ports:
+      - 3306:3306
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+
   workspace:
     build: images/workspace
     tty: true
     volumes_from:
       - code
+    links:
+      - mariadb
+      - redis
+
   php-fpm:
     build: images/php-fpm
     volumes_from:
       - code
+    links:
+      - mariadb
+      - redis
+
   web:
     build: images/web
     ports:
       - 80:80
     links:
       - php-fpm
+      - mariadb
+      - redis
     volumes_from:
       - code
     volumes:
       - ./images/web/conf.d/:/etc/nginx/conf.d/
       - ./images/web/sites-available/:/etc/nginx/sites-available/
-    depends_on:
-      - php-fpm

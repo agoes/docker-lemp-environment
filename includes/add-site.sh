@@ -5,7 +5,7 @@ SERVER_NAME=$1
 DOCUMENT_ROOT="/var/www/$2"
 WORKSPACE="../code/$SERVER_NAME"
 DOCKER_COMPOSE=$(which docker-compose)
-SERVER_BLOCK_TEMPLATE="../etc/server_block.conf"
+SERVER_BLOCK_TEMPLATE="../examples/server_block.conf.example"
 SERVER_BLOCK="../images/web/sites-available/site-$SERVER_NAME.conf"
 NGINX_SITES_AVAILABLE="/etc/nginx/sites-available/site-$SERVER_NAME.conf"
 NGINX_SITES_ENABLED="/etc/nginx/sites-enabled/$SERVER_NAME.conf"
@@ -16,6 +16,7 @@ if [ "$1" != "" ] && [ "$2" != "" ]; then
     if [ $? -eq 1 ]; then
         ERROR=1
     fi
+
     sed -i "s/<document_root>/${DOCUMENT_ROOT//\//\\/}/g" $SERVER_BLOCK
     if [ $? -eq 1 ]; then
         ERROR=1
