@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## Reload available virtual hosts that defined in sites.sh
+
 WORKSPACE="../code/"
 DOCKER_COMPOSE=$(which docker-compose)
 

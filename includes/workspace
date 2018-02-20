@@ -1,3 +1,5 @@
 #!/bin/bash
 
+## Enter workspace container
+
 $(which docker-compose) exec workspace sh

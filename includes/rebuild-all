@@ -1,12 +1,14 @@
 #!/bin/bash
 
+## Rebuild all service images and containers. All your data will be cleaned up.
+
 DOCKER_COMPOSE=$(which docker-compose)
 
 read -p "This will REMOVE all your existing containers, data and rebuild all images. Your application code will NOT REMOVED. Continue (y/n)? " choice
 case "$choice" in 
   y|Y ) 
     $DOCKER_COMPOSE up --build --force-recreate -d
-    ./reload-vhost.sh
+    ./reload-vhost
     ;;
   *) echo "Canceled";;
 esac

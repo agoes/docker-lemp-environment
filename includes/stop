@@ -1,0 +1,6 @@
+#!/bin/bash
+
+## Stop all docker-compose containers
+
+$(which docker-compose) stop
+echo && $(which docker-compose) ps

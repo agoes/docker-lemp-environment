@@ -1,0 +1,6 @@
+#!/bin/bash
+
+## Restart docker-compose services
+
+$(which docker-compose) restart
+echo && $(which docker-compose) ps
