@@ -15,8 +15,7 @@ if [ "${#SITES[@]}" -ne 0 ]; then
         ./add-site.sh $hostname ${SITES[$hostname]}
     done
 
-    echo "Restarting web container"
     $DOCKER_COMPOSE restart web && echo && $DOCKER_COMPOSE ps
 else
-    echo "Cannot add/update vhost. SITES is empty or not set. Add sites in sites.sh, see the example in etc/sites.sh.example"
+    echo "Cannot add/update vhost. SITES is empty or not set. Add sites in sites.sh, see the example in examples/sites.sh.example"
 fi
