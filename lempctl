@@ -30,22 +30,18 @@ if [ ! -f sites.sh ]; then
 fi
 
 if [ "$ERROR" -ne 1 ]; then
-    if [ "$1" == "init" ]; then
-        $(which docker-compose) up --build -d
+    if [ -f includes/$1 ]; then
+        cd includes/ && ./$1
     else
-        if [ -f includes/$1 ]; then
-            cd includes/ && ./$1
-        else
-            printf "Usage:\n  ./lempctl [COMMAND]\n\n"
-            printf "Available commands :\n"
-            SCRIPTS=includes/*
-            for f in $SCRIPTS
-            do
-                PUBLIC=$(cat $f | grep "\#\# " | cut -c3-100)
-                if [ "$PUBLIC" != "" ]; then
-                    printf "  $YELLOW$(basename $f)$NC\t$PUBLIC\n" | expand -t 35
-                fi
-            done
-        fi
+        printf "Usage:\n  ./lempctl [COMMAND]\n\n"
+        printf "Available commands :\n"
+        SCRIPTS=includes/*
+        for f in $SCRIPTS
+        do
+            PUBLIC=$(cat $f | grep "\#\# " | cut -c3-100)
+            if [ "$PUBLIC" != "" ]; then
+                printf "  $YELLOW$(basename $f)$NC\t$PUBLIC\n" | expand -t 35
+            fi
+        done
     fi
 fi

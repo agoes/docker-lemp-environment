@@ -1,0 +1,6 @@
+#!/bin/bash
+
+## Build and start docker-compose services
+
+$(which docker-compose) up -d --build
+./reload-vhost.sh
