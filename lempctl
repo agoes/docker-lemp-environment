@@ -1,14 +1,18 @@
 #!/bin/bash
 ERROR=0
 
-echo 
+YELLOW=$(tput setaf 3)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+NC=$(tput sgr0)
+echo
 
 if [ ! -d code ]; then
-    echo "code directory not found."
+    printf "$RED%s$NC\n" "code directory not found."
     mkdir code
 
     if [ $? -eq 0 ]; then
-        printf "code directory was created. It is like htdocs directory for your environment\n"
+        printf "$GREEN%s$NC\n" "code directory was created. It is like htdocs directory for your environment"
     else
         ERROR=1
     fi
@@ -25,22 +29,21 @@ if [ ! -f sites.sh ]; then
     fi
 fi
 
-if [ "$ERROR" -ne 1 ] && [ "$1" != "" ]; then
+if [ "$ERROR" -ne 1 ]; then
     if [ "$1" == "init" ]; then
         $(which docker-compose) up --build -d
     else
         if [ -f includes/$1 ]; then
             cd includes/ && ./$1
         else
-            printf "Available commands :\n\n"
+            printf "Usage:\n  ./lempctl [COMMAND]\n\n"
+            printf "Available commands :\n"
             SCRIPTS=includes/*
-            YELLOW=$(tput setaf 3)
-            NC=$(tput sgr0)
             for f in $SCRIPTS
             do
                 PUBLIC=$(cat $f | grep "\#\# " | cut -c3-100)
                 if [ "$PUBLIC" != "" ]; then
-                    printf "$YELLOW$(basename $f)$NC\t$PUBLIC\n" | expand -t 25
+                    printf "  $YELLOW$(basename $f)$NC\t$PUBLIC\n" | expand -t 35
                 fi
             done
         fi
