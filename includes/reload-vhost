@@ -14,7 +14,7 @@ if [ "${#SITES[@]}" -ne 0 ]; then
 
     for hostname in "${!SITES[@]}"
     do
-        ./add-site.sh $hostname ${SITES[$hostname]}
+        ./add-site $hostname ${SITES[$hostname]}
     done
 
     $DOCKER_COMPOSE restart web && echo && $DOCKER_COMPOSE ps
