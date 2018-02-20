@@ -26,9 +26,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php -r "unlink('composer-setup.php');" && \
     mv composer.phar /usr/local/bin/composer
 
-# install phpunit
 ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN composer global require phpunit/phpunit -vvv
-ENV PATH="/root/.composer/vendor/bin:${PATH}"
 
 WORKDIR /var/www
