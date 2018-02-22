@@ -3,4 +3,4 @@
 ## Start all services in docker-compose and reload all virtual hosts
 
 $(which docker-compose) up -d
-./reload-vhost.sh
+./reload-vhost
