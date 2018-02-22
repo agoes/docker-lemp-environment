@@ -20,10 +20,10 @@ Redis
 - Connect existing web to redis
 
 XDebug
-- Enable XDebug in http
+- Enable XDebug in http [done]
 - Enable XDebug in CLI
 
-./lempctl --help
+./lempctl --help [done]
 
 Custom vhost file
 
