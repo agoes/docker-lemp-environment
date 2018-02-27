@@ -3,7 +3,7 @@
 Simple LEMP environment **for development purpose** using docker and docker-compose. It inspired from Laravel Homestead and Laradock.
 
 ## Features
-- Alpine linux in all images
+- It using Alpine linux for all docker images
 - Default lemp stack (nginx, php, mariadb)
 - Xdebug
 - Multiple virtual hosts
@@ -14,19 +14,19 @@ Simple LEMP environment **for development purpose** using docker and docker-comp
 - Install docker-compose https://docs.docker.com/compose/install/
 - Download the latest release https://github.com/agoes/lemp-env/releases or `git clone https://github.com/agoes/lemp-env.git`
 - Enter `lemp-env` `cd lemp-env/`
-- Inside `lemp-en` directory, run `./lempctl init`
+- Inside `lemp-env` directory, run `./lempctl init`
 
 ## Workspace
 Your applications / websites should be placed at `code` directory that placed in environment root directory. For example if you have project folder `laravelapp` it should be located at `code/laravelapp`
 
-## sites.sh
+## `sites.sh`
  This file is located in the environment root directory. It is for mapping hostname and public directory / index file location
 
  ### Add new site
 - Open `sites.sh`
-- Add `SITES[yourapp.local]=[code/yourapp/public/directory]
+- Add `SITES[yourapp.local]=[code/yourapp/public/directory]`
 - Save that file and run `./lempctl reload-vhost`
-- Dont forget to map IP of yourapp.local in your /etc/hosts
+- Dont forget to map IP of `yourapp.local` in your `/etc/hosts`. You can use [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) or [acrylic dns (windows)](http://mayakron.altervista.org/wikibase/show.php?id=AcrylicHome) for better host mapping.
 
 ## lempctl command usage
 This command is located at environment root directory.
@@ -45,6 +45,7 @@ Available commands :
   stop                   Stop all docker-compose containers
   workspace              Enter workspace container
 ```
+Notes : For Windows user, please use WSL to run `lempctl` command.
 
 ## License
 [MIT License](LICENSE)
