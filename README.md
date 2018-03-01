@@ -12,9 +12,9 @@ Simple LEMP environment **for development purpose** using docker and docker-comp
 ## Installation
 - Install docker https://docs.docker.com/install/
 - Install docker-compose https://docs.docker.com/compose/install/
-- Download the latest release https://github.com/agoes/lemp-env/releases or `git clone https://github.com/agoes/lemp-env.git`
-- Enter `lemp-env` `cd lemp-env/`
-- Inside `lemp-env` directory, run `./lempctl init`
+- Download the latest release https://github.com/agoes/docker-lemp-environment/releases or `git clone https://github.com/agoes/docker-lemp-environment.git`
+- Enter `docker-lemp-environment` `cd docker-lemp-environment/`
+- Inside `docker-lemp-environment` directory, run `./lempctl init`
 
 ## Workspace
 Your applications / websites should be placed at `code` directory that placed in environment root directory. For example if you have project folder `laravelapp` it should be located at `code/laravelapp`
