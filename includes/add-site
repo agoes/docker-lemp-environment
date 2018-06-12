@@ -1,5 +1,3 @@
-#!/bin/bash
-
 ERROR=0
 SERVER_NAME=$1
 DOCUMENT_ROOT="/var/www/$2"
@@ -12,12 +10,12 @@ NGINX_SITES_ENABLED="/etc/nginx/sites-enabled/$SERVER_NAME.conf"
 
 if [ "$1" != "" ] && [ "$2" != "" ]; then
     cp $SERVER_BLOCK_TEMPLATE $SERVER_BLOCK
-    sed -i "s/<server_name>/$SERVER_NAME/g" $SERVER_BLOCK
+    sed -i -e "s/<server_name>/$SERVER_NAME/g" $SERVER_BLOCK
     if [ $? -eq 1 ]; then
         ERROR=1
     fi
 
-    sed -i "s/<document_root>/${DOCUMENT_ROOT//\//\\/}/g" $SERVER_BLOCK
+    sed -i -e "s/<document_root>/${DOCUMENT_ROOT//\//\\/}/g" $SERVER_BLOCK
     if [ $? -eq 1 ]; then
         ERROR=1
     fi

@@ -1,5 +1,3 @@
-#!/bin/bash
-
 ## Restart docker-compose services
 
 $(which docker-compose) restart

@@ -9,6 +9,10 @@ Simple LEMP environment **for development purpose** using docker and docker-comp
 - Multiple virtual hosts
 - `docker-compose` wrapper using `lempctl`
 
+## Prerequisites
+- `bash 4.x`. For OS X users, please read known issues section
+- `docker` & `docker-compose`
+
 ## Installation
 - Install docker https://docs.docker.com/install/
 - Install docker-compose https://docs.docker.com/compose/install/
@@ -32,7 +36,7 @@ Your applications / websites should be placed at `code` directory that placed in
 This command is located at environment root directory.
 
 ```sh
-./lempctl [COMMAND]
+$ ./lempctl [COMMAND]
 ```
 
 ```
@@ -45,7 +49,10 @@ Available commands :
   stop                   Stop all docker-compose containers
   workspace              Enter workspace container
 ```
-Notes : For Windows user, please use WSL to run `lempctl` command.
+Note : For Windows users, you must run `lempctl` from WSL since I don't made `.bat` version of this stuff.
+
+## Known issues
+- For OS X users, they might found that it still use bash 3.x instead of bash 4.x, even in the latest version of OS X. In order to make this work, you have to install bash 4 **SEPARATELY AND DO NOT REPLACE IT**, I am not responsible for any kind of mess if you prefer to replace it. You can install it using homebrew by typing `$ brew install bash` on the terminal. It should be installed in `/usr/local/bin/bash`
 
 ## License
 [MIT License](LICENSE)

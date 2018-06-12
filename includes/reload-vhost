@@ -1,5 +1,3 @@
-#!/bin/bash
-
 ## Reload available virtual hosts that defined in sites.sh
 
 WORKSPACE="../code/"
