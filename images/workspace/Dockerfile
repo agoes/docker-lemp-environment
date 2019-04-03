@@ -25,6 +25,6 @@ RUN apk del autoconf g++ make && \
 COPY ./scripts/install-composer.sh /tmp/install-composer.sh
 RUN chmod +x /tmp/install-composer.sh && /tmp/install-composer.sh
 
-ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN mkdir /.composer && chmod -R 777 /.composer
 
 WORKDIR /var/www

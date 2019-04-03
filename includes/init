@@ -1,4 +1,4 @@
 ## Build and start docker-compose services
 
-$(which docker-compose) up -d --build
+DEFAULT_UID=$(id -u):$(id -g) $(which docker-compose) up -d --build
 ./reload-vhost
