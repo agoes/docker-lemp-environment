@@ -2,7 +2,7 @@ FROM php:fpm-alpine
 LABEL maintainer="agoes <agoes.aswari@gmail.com>"
 
 ARG CONF_PATH=/usr/local/etc/php/conf.d
-ARG XDEBUG_VER=2.6.0
+ARG XDEBUG_VER=beta
 
 # install extensions
 RUN apk add --update --no-cache $PHPIZE_DEPS autoconf g++ make imap-dev openssl-dev libpng-dev && \
