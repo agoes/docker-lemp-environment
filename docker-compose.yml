@@ -24,7 +24,7 @@ services:
     links:
       - mariadb
       - redis
-    user: ${DEFAULT_USER}
+    user: ${DEFAULT_UID}
 
   php-fpm:
     build: images/php-fpm
