@@ -5,14 +5,19 @@ services:
     image: tianon/true
     volumes:
       - ./code:/var/www/
-
-  mariadb:
-    build: images/mariadb
+  
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - 3306:3306
 
   redis:
     image: redis:alpine
+    restart: always
     ports:
       - 6379:6379
 
@@ -22,28 +27,47 @@ services:
     volumes_from:
       - code
     links:
-      - mariadb
+      - mailhog
+      - mysql
       - redis
     user: ${DEFAULT_UID}
 
   php-fpm:
     build: images/php-fpm
+    restart: always
     volumes_from:
       - code
     links:
-      - mariadb
+      - mailhog
+      - mysql
       - redis
 
   web:
     build: images/web
+    restart: always
     ports:
       - 80:80
     links:
       - php-fpm
-      - mariadb
+      - mysql
       - redis
+      - mailhog
     volumes_from:
       - code
     volumes:
       - ./images/web/conf.d/:/etc/nginx/conf.d/
       - ./images/web/sites-available/:/etc/nginx/sites-available/
+
+  mailhog:
+    image: mailhog/mailhog
+    restart: always
+    ports: 
+      - 1025:1025
+      - 8025:8025
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
