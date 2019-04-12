@@ -1,4 +1,4 @@
-FROM php:alpine
+FROM php:7.3-alpine
 LABEL maintainer="agoes <agoes.aswari@gmail.com>"
 
 # install extensions
@@ -25,6 +25,8 @@ RUN apk del autoconf g++ make && \
 COPY ./scripts/install-composer.sh /tmp/install-composer.sh
 RUN chmod +x /tmp/install-composer.sh && /tmp/install-composer.sh
 
-RUN mkdir /.composer && chmod -R 777 /.composer
+RUN mkdir /.composer && chmod -R 777 /.composer && \
+    mkdir /.config && chmod -R 777 /.config && \
+    mkdir /.npm && chmod -R 777 /.npm
 
 WORKDIR /var/www

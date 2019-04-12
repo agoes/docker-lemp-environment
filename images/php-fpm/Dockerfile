@@ -1,4 +1,4 @@
-FROM php:fpm-alpine
+FROM php:7.3-fpm-alpine
 LABEL maintainer="agoes <agoes.aswari@gmail.com>"
 
 ARG CONF_PATH=/usr/local/etc/php/conf.d
