@@ -31,7 +31,7 @@ fi
 
 if [ "$ERROR" -ne 1 ]; then
     if [ -f includes/$1 ]; then
-        cd includes/ && ./$1
+        cd includes/ && DEFAULT_UID=$(id -u):$(id -g) ./$1
     else
         printf "Usage:\n  ./lempctl [COMMAND]\n\n"
         printf "Available commands :\n"
